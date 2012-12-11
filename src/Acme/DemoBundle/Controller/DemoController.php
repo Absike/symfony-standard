@@ -27,7 +27,17 @@ class DemoController extends Controller
      */
     public function helloAction($name)
     {
-        return array('name' => $name);
+        $response = $this->render('AcmeDemoBundle:Demo:hello.html.twig', array('name' => $name));
+        $response->setCache(array('s_maxage' => 10, 'public' => true));
+
+        return $response;
+    }
+
+    public function embeddedAction()
+    {
+        $response = $this->render('AcmeDemoBundle:Demo:embedded.html.twig');
+
+        return $response;
     }
 
     /**
